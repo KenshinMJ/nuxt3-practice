@@ -4,12 +4,16 @@ Resources:
   ServerlessDeploymentBucket: 
     Type: "AWS::S3::Bucket"
     Properties: 
-      AccessControl: Private
       BucketName: nuxt3-practice-api-deployment-bucket
       BucketEncryption: 
         ServerSideEncryptionConfiguration: 
           - ServerSideEncryptionByDefault: 
               SSEAlgorithm: "AES256"
+      PublicAccessBlockConfiguration:
+        BlockPublicAcls: true
+        BlockPublicPolicy: true
+        IgnorePublicAcls: true
+        RestrictPublicBuckets: true
   ServerlessDeploymentBucketPolicy: 
     Type: "AWS::S3::BucketPolicy"
     Properties: 

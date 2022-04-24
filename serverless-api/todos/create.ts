@@ -1,10 +1,14 @@
 'use strict'
 
 import { v4 as uuidv4 } from 'uuid';
+import { DynamoDB } from 'aws-sdk';
 
-import { DynamoDB } from 'aws-sdk'
-
-const dynamoDb = new DynamoDB.DocumentClient({region: 'ap-northeast-1', endpoint: 'http://localhost:8000'})
+const dynamoDb = new DynamoDB.DocumentClient(
+  {
+    region: process.env.DYNAMODB_REGION, 
+    endpoint: process.env.DYNAMODB_ENDPOINT
+  }
+);
 
 module.exports.create = (event, context, callback) => {
   const timestamp = new Date().getTime()

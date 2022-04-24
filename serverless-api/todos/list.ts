@@ -2,7 +2,12 @@
 
 import { DynamoDB } from 'aws-sdk'
 
-const dynamoDb = new DynamoDB.DocumentClient({region: 'ap-northeast-1', endpoint: 'http://localhost:8000'})
+const dynamoDb = new DynamoDB.DocumentClient(
+  {
+    region: process.env.DYNAMODB_REGION, 
+    endpoint: process.env.DYNAMODB_ENDPOINT
+  }
+);
 const params = {
   TableName: process.env.DYNAMODB_TABLE,
 };

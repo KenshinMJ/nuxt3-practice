@@ -7,7 +7,9 @@ provider:
   runtime: nodejs14.x
   region: ap-northeast-1
   environment:
-    DYNAMODB_TABLE: todo
+    DYNAMODB_TABLE: ${param:dynamodb-table}
+    DYNAMODB_REGION: ${self:provider.region}
+    DYNAMODB_ENDPOINT: ${param:dynamodb-endpoint}
   logRetentionInDays: 14
   deploymentBucket:
     name: ${self:service}-deployment-bucket
@@ -22,11 +24,14 @@ provider:
             - dynamodb:PutItem
             - dynamodb:UpdateItem
             - dynamodb:DeleteItem
-          Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/todo"
+          Resource: "arn:aws:dynamodb:${opt:region, self:provider.region}:*:table/${param:dynamodb-table}"
 
 params:
   default:
     dynamodb-table: todo
+    dynamodb-endpoint: http://localhost:8000
+  dev:
+    dynamodb-endpoint: dynamodb.${self:provider.region}.amazonaws.com
 
 plugins:
   - serverless-plugin-typescript
@@ -40,7 +45,7 @@ custom:
     number: 3
   dynamodb:
     stages:
-      - dev
+      - local
     start:
 #      port: 8000
       inMemory: true
@@ -105,4 +110,4 @@ resources:
         ProvisionedThroughput:
           ReadCapacityUnits: 1
           WriteCapacityUnits: 1
-        TableName: todo
+        TableName: ${param:dynamodb-table}
