@@ -1,5 +1,6 @@
 {
-  "name": "example-hello-world",
+  "name": "nuxt3-practice-frontend",
+  "description": "Nuxt 3 practice",
   "private": true,
   "scripts": {
     "build": "nuxt build",
@@ -8,6 +9,7 @@
     "preview": "nuxt preview"
   },
   "devDependencies": {
+    "@nuxtjs/tailwindcss": "^5.0.3",
     "nuxt": "3.0.0-rc.0"
   }
 }

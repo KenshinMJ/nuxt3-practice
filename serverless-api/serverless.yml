@@ -55,6 +55,8 @@ custom:
         sources:
           - table: todo
             sources: [ ./migrations/todos.json ]
+  serverless-offline:
+    httpPort: 3001
 
 functions:
   create:

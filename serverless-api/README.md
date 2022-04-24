@@ -67,3 +67,16 @@ Example Result:
 ```bash
 {"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":true,"updatedAt":1479138570824}%
 ```
+
+## To Do
+- [ ] Add CloudFront
+- [ ] Add delete ToDo API
+- [ ] Change port
+- [ ] Add API driver
+- [ ] Add test
+
+## References
+
+|Reference|Details|
+|-|-| 
+|[aws-node-typescript-rest-api-with-dynamodb](https://github.com/serverless/examples/tree/v3/aws-node-typescript-rest-api-with-dynamodb)|Serverless Framework official example|
