@@ -1,34 +1,22 @@
-<!--
-title: TODO
-description: This example shows your how to create a TypeScript powered REST API with DynamoDB.
-layout: Doc
-framework: v1
-platform: AWS
-language: nodeJS
-priority: 10
-authorLink: 'https://github.com/QuantumInformation'
-authorName: Nikos
-authorAvatar: 'https://avatars0.githubusercontent.com/u/216566?v=4&s=140'
--->
+# serverless-api
 
-# Introduction
+Serverless TypeScript API apps with following libraries:
 
-TypeScript (ts) offers type safety which is helpful when working with the AWS SDK, which comes with ts definitions (d.ts)
+* [Serverless Framework](https://www.serverless.com/)
+* [Serverless DynamoDB Local](https://www.serverless.com/plugins/serverless-dynamodb-local)
+* [Serverless Offline](https://github.com/dherault/serverless-offline)
 
-# compiling
+## Run locally
 
-You can compile the ts files in this directory by 1st installing typescript via
+1. Execute `npm ci` command to install packages.
+2. Execute `npx sls dynamodb install` command to install `serverless-dynamodb-local`, enabling you to emulate Amazon DynamoDB locally.
+3. Execute `npm run deploy` command to run app locally. Console will show you API endpoints. You can easily manage local DynamoDB data with GUI by `npm run dynamodb-admin` command.
 
-`npm install -g typescript`
+## Deploy apps to AWS
 
-then
-
-`npm i`
-
-You can then run the compiler by running `tsc` in this directory. It will pull the settings from .tsconfig and extra @types
-from package.json. The output create.js file is what will be uploaded by serverless.
-
-For brevity, I have just demonstrated this to match with the todos/create.js, todos/list.js, todos/get.js and todos/update.js lambda function
+1. Execute `npm ci` command to install packages (if you haven't yet).
+2. Create a deployment bucket for Serverless Framework. Use the AWS CloudFormation template file `cloudformation/deployment-bucket.yaml`. 
+3. Execute `npm run deploy` command to deploy serverless apps.
 
 ## Usage
 
@@ -37,7 +25,7 @@ You can create, retrieve, update, or delete todos with the following commands:
 ### Create a Todo
 
 ```bash
-curl -X POST https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos --data '{ "text": "Learn Serverless" }'
+curl -X POST https://XXXXXXX.execute-api.ap-northeast-1.amazonaws.com/dev/todos --data '{ "text": "Learn Serverless" }'
 ```
 
 Example Result:
@@ -48,7 +36,7 @@ Example Result:
 ### List all Todos
 
 ```bash
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos
+curl https://XXXXXXX.execute-api.ap-northeast-1.amazonaws.com/dev/todos
 ```
 
 Example output:
@@ -60,7 +48,7 @@ Example output:
 
 ```bash
 # Replace the <id> part with a real id from your todos table
-curl https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos/<id>
+curl https://XXXXXXX.execute-api.ap-northeast-1.amazonaws.com/dev/todos/<id>
 ```
 
 Example Result:
@@ -72,15 +60,10 @@ Example Result:
 
 ```bash
 # Replace the <id> part with a real id from your todos table
-curl -X PUT https://XXXXXXX.execute-api.us-east-1.amazonaws.com/dev/todos/<id> --data '{ "text": "Learn Serverless", "checked": true }'
+curl -X PUT https://XXXXXXX.execute-api.ap-northeast-1.amazonaws.com/dev/todos/<id> --data '{ "text": "Learn Serverless", "checked": true }'
 ```
 
 Example Result:
 ```bash
 {"text":"Learn Serverless","id":"ee6490d0-aa11e6-9ede-afdfa051af86","createdAt":1479138570824,"checked":true,"updatedAt":1479138570824}%
 ```
-
-
-### 
-- npm ci
-- npx sls dynamodb install
