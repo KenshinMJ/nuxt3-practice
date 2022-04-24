@@ -1,0 +1,31 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "The AWS CloudFormation template for this Serverless application"
+Resources: 
+  ServerlessDeploymentBucket: 
+    Type: "AWS::S3::Bucket"
+    Properties: 
+      AccessControl: Private
+      BucketName: nuxt3-practice-api-deployment-bucket
+      BucketEncryption: 
+        ServerSideEncryptionConfiguration: 
+          - ServerSideEncryptionByDefault: 
+              SSEAlgorithm: "AES256"
+  ServerlessDeploymentBucketPolicy: 
+    Type: "AWS::S3::BucketPolicy"
+    Properties: 
+      Bucket: !Ref ServerlessDeploymentBucket
+      PolicyDocument: 
+        Statement: 
+          - Action: 
+              - "s3:*"
+            Effect: "Allow"
+            Principal: "*"
+            Resource: !Join
+              - ""
+              - - "arn:aws:s3:::"
+                - !Ref ServerlessDeploymentBucket
+                - "/*"
+
+Outputs: 
+  ServerlessDeploymentBucketName: 
+    Value: !Ref ServerlessDeploymentBucket

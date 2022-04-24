@@ -1,0 +1,35 @@
+{
+  "name": "serverless-api",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "tsc -w",
+    "lint": "tslint '*.ts'",
+    "deploy:local": "npx serverless offline start --verbose",
+    "deploy": "serverless deploy --verbose",
+    "dynamodb-admin": "npx dynamodb-admin",
+    "start:dynamodb:standalone": "npx serverless dynamodb start"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/lodash": "^4.14.112",
+    "@types/node": "^7.0.5",
+    "@types/uuid": "^8.3.4",
+    "dynamodb-admin": "^4.1.0",
+    "serverless": "^3.15.2",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^8.7.0",
+    "serverless-plugin-typescript": "^2.1.2",
+    "serverless-prune-plugin": "^2.0.1",
+    "tslint": "^5.5.0",
+    "tslint-config-standard": "^6.0.1",
+    "typescript": "^2.4.2"
+  },
+  "dependencies": {
+    "uuid": "^8.3.2"
+  }
+}

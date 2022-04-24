@@ -1,42 +1,11 @@
-# Nuxt 3 Minimal Starter
+# nuxt3-practice
+Nuxt 3 practice project. This project has Nuxt SPA front-end app and back-end serverless API app.
 
-Look at the [nuxt 3 documentation](https://v3.nuxtjs.org) to learn more.
+## frontend
+Nuxt SPA front-end app.
 
-## Setup
+## serverless-api
+back-end serverless API app with Serverless Framework.
 
-Make sure to install the dependencies:
-
-```bash
-# yarn
-yarn install
-
-# npm
-npm install
-
-# pnpm
-pnpm install --shamefully-hoist
-```
-
-## Development Server
-
-Start the development server on http://localhost:3000
-
-```bash
-npm run dev
-```
-
-## Production
-
-Build the application for production:
-
-```bash
-npm run build
-```
-
-Locally preview production build:
-
-```bash
-npm run preview
-```
-
-Checkout the [deployment documentation](https://v3.nuxtjs.org/docs/deployment) for more information.
+# References
+TBD
