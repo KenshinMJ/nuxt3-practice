@@ -16,7 +16,11 @@ Serverless TypeScript API apps with following libraries:
 
 1. Execute `npm ci` command to install packages (if you haven't yet).
 2. Create a deployment bucket for Serverless Framework. Use the AWS CloudFormation template file `cloudformation/deployment-bucket.yaml`. 
-3. Execute `npm run deploy` command to deploy serverless apps.
+3. Execute `npm run deploy:local` command to deploy serverless apps.
+
+## Remove apps from AWS
+
+1. Execute `npm run remove` command to remove serverless apps and resources except DynamoDB tables.
 
 ## Usage
 
@@ -74,6 +78,7 @@ Example Result:
 - [ ] Change port
 - [ ] Add API driver
 - [ ] Add test
+- [ ] Add OpenAPI Spec
 
 ## References
 
