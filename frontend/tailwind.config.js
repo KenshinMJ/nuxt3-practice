@@ -1,13 +1,12 @@
 module.exports = {
-  purge: [
+  content: [
     './app.vue',
     './components/**/*.{vue,js}',
     './layouts/**/*.vue',
     './pages/**/*.vue',
     './plugins/**/*.{js,ts}',
-    './nuxt.config.{js,ts}',
   ],
-  darkMode: false,
+  media: false,
   content: [],
   theme: {
     extend: {},
