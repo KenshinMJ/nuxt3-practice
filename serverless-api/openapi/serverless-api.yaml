@@ -1,0 +1,151 @@
+openapi: "3.0.3"
+info:
+  version: 0.1.0
+  title: serverless-api
+  description: todo API
+  license:
+    name: MIT
+servers:
+  - url: http://localhost:{port}/local
+    description: local
+    variables:
+      port:
+        default: '3001'
+  - url: https://{apig-id}.execute-api.{region}.amazonaws.com/dev
+    description: AWS dev
+    variables:
+      apig-id:
+        default: ''
+      region:
+        default: 'ap-northeast-1'
+paths:
+  /todos:
+    get:
+      summary: List all todos
+      operationId: list
+      tags:
+        - todos
+      responses:
+        '200':
+          description: An array of todos
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/Todos"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    post:
+      summary: Create a todo
+      operationId: create
+      tags:
+        - todos
+      requestBody:
+        description: a todo name to create
+        content:
+          'application/json':
+            schema:
+              $ref: "#/components/schemas/NewTodo"
+      responses:
+        '200':
+          description: Created todo
+          content:
+            application/json:    
+              schema:
+                $ref: "#/components/schemas/Todo"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+  /todo/{todoId}:
+    get:
+      summary: Info for a specific todo
+      operationId: get
+      tags:
+        - todos
+      parameters:
+        - name: todoId
+          in: path
+          required: true
+          description: The id of the todo to retrieve
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+    put:
+      summary: Update a specific todo
+      operationId: update
+      tags:
+        - todos
+      parameters:
+        - name: todoId
+          in: path
+          required: true
+          description: The id of the todo to update
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Expected response to a valid request
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Todo"
+        default:
+          description: unexpected error
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Error"
+components:
+  schemas:
+    Todo:
+      type: object
+      required:
+        - text
+      properties:
+        id:
+          type: string
+          example: b48b1426-5630-408a-accc-b2ce37adf418
+        text:
+          type: string
+          example: Learn Serverless
+        checked:
+          type: boolean
+        createdAt:
+          type: integer
+          example: 1656222509768
+        updatedAt:
+          type: integer
+          example: 1656222509768
+    Todos:
+      type: array
+      items:
+        $ref: "#/components/schemas/Todo"
+    NewTodo:
+      type: object
+      required:
+        - text
+      properties:
+        text:
+          type: string
+          example: Learn Serverless
+    Error:
+      type: string
+      example: Couldn't fetch the todo item.
